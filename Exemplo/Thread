@@ -1,0 +1,26 @@
+#include <iostream>
+#include <ostream>
+#include <thread>
+#include <chrono>
+#include <vector>
+
+#define NUM_THREADS 1000
+
+using namespace std;
+
+void thread_function(int num) {
+cout << "i = " << num << endl;
+chrono::milliseconds time(1);
+this_thread::sleep_for(time);
+}
+int main() {
+vector<thread> threads;
+for (int i = 0; i < NUM_THREADS; i++) {
+threads.push_back(thread(thread_function, i));
+threads[i].join();
+}
+/*for (int i = 0; i < NUM_THREADS; i++) {
+threads[i].join();
+}*/
+return 0;
+}
