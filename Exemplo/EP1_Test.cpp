@@ -1,12 +1,13 @@
+/* // CODIGO ANTERIOR
 #include <iostream>
 #include <random>
 
 using namespace std;
 
 int main(){
-    //Configura qual � o gerador
+    //Configura qual é o gerador
     default_random_engine gerador;
-    //Configura qual � o intervalo (nesse caso de 1 at� 100)
+    //Configura qual é o intervalo (nesse caso de 1 até 100)
 uniform_int_distribution<int> distribuicao(1,10);
 
 int mat[12][12];
@@ -24,4 +25,34 @@ for(int l=0; l<3; l++){
     cout << endl;
 }
 system (&quot;pause>>null&quot;);
+}*/
+
+// CODIGO CONCERTADO, PORÉM SEM GERAR ALETORIO, GERA OS MESMO EM TODA EXECUÇÃO
+
+#include <iostream>
+#include <random>
+
+using namespace std;
+
+int main(){
+    //Configura qual é o gerador
+    default_random_engine gerador;
+    //Configura qual é o intervalo (nesse caso de 1 até 100)
+uniform_int_distribution <int> distribuicao(1,10);
+
+int mat[12][12];
+int l, c;
+for(int l=0; l<12; l++){
+    for(c=0; c<12; c++){
+        mat[l][c] = distribuicao(gerador);
+    }
+}
+
+for(int l=0; l<12; l++){
+    for(int c=0; c<12; c++){
+        cout << "|"<< mat[l][c] << "|";
+    }
+    cout << endl;
+}
+return 0;
 }
