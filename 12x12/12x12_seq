@@ -62,5 +62,4 @@ for(int l=0; l<12; l++){
     cout << endl;
 }
 return 0;
-}rn 0;
 }
