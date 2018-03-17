@@ -1,0 +1,65 @@
+#include <iostream>
+#include <random>
+
+using namespace std;
+
+int main(){
+    //Configura qual é o gerador
+    default_random_engine gerador;
+    //Configura qual é o intervalo (nesse caso de 1 até 100)
+uniform_int_distribution <int> distribuicao(1,10);
+
+int matA[120][120], matB[120][120], matC[120][120], aux=0;
+int l, c, x;
+
+//MATRIZ A
+for(l=0; l<120; l++){
+    for(c=0; c<120; c++){
+        matA[l][c] = distribuicao(gerador);
+    }
+}
+
+//MATRIZ B
+for(l=0; l<120; l++){
+    for(c=0; c<120; c++){
+        matB[l][c] = distribuicao(gerador);
+    }
+}
+
+//MATRIZ C
+for(l=0; l<120; l++){
+    for(c=0; c<120; c++){
+            matC[l][c]=0;
+            for(x=0; x<120; x ++){
+                aux += matA[l][x] * matB[x][c];
+            }
+            matC[l][c]= aux;
+            aux = 0;
+    }
+}
+
+//PRINTS
+for(int l=0; l<120; l++){
+    for( c=0; c<120; c++){
+        cout << "|"<< matA[l][c] << "|";
+    }
+    cout << endl;
+}
+cout<< endl;
+
+for(int l=0; l<120; l++){
+    for( c=0; c<120; c++){
+        cout << "|"<< matB[l][c] << "|";
+    }
+    cout << endl;
+}
+cout<<endl;
+
+for(int l=0; l<120; l++){
+    for( c=0; c<120; c++){
+        cout << "|"<< matC[l][c] << "|";
+    }
+    cout << endl;
+}
+return 0;
+}
