@@ -4,25 +4,6 @@
 
 using namespace std;
 
-void threadFor(int &matA, int &matB, int &matC){
-    int l, c, x, aux=0;
-    for(l=0; l<2; l++){
-    for(c=0; c<2; c++){
-            matC[l][c]=0;
-            for(x=0; x<2; x ++){
-               aux = thread tMult{threadMultiplica, l, c, x, ref(matA), ref(matB), ref(matC), aux};
-            }
-            matC[l][c]= aux;
-            aux = 0;
-    }
-}
-}
-
-void threadMultiplica(int l, int c, int x, int &matA, int &matB, int &matC, int aux){
-    aux += matA[l][x] * matB[x][c];
-
-    }
-
 int main(){
     //Configura qual é o gerador
     default_random_engine gerador;
@@ -48,17 +29,22 @@ for(l=0; l<2; l++){
 
 //MATRIZ C
 
-thread tfor{threadFor, ref(matA), ref(matB), ref(matC)};
-/*for(l=0; l<2; l++){
+thread tfor{[&](){
+    for(l=0; l<2; l++){
     for(c=0; c<2; c++){
             matC[l][c]=0;
             for(x=0; x<2; x ++){
-                aux += matA[l][x] * matB[x][c];
+                thread tMult{[&](){
+                    aux += matA[l][x] * matB[x][c];
+                }};
+                tMult.join();
             }
             matC[l][c]= aux;
             aux = 0;
     }
-}*/
+
+}}};
+tfor.join();
 
 //PRINTS
 for(int l=0; l<2; l++){
