@@ -258,11 +258,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_12_2t.join();
-   t1_12_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_12_2t.join();
+   t1_12_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -295,11 +293,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_20_2t.join();
-   t1_20_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_20_2t.join();
+   t1_20_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -331,11 +327,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_40_2t.join();
-   t1_40_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_40_2t.join();
+   t1_40_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -367,11 +361,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_80_2t.join();
-   t1_80_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_80_2t.join();
+   t1_80_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -403,11 +395,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_100_2t.join();
-   t1_100_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_100_2t.join();
+   t1_100_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -439,11 +429,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_120_2t.join();
-   t1_120_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_120_2t.join();
+   t1_120_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -475,11 +463,9 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_160_2t.join();
-   t1_160_2t.join();
-
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_160_2t.join();
+   t1_160_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
 return tempo;
@@ -511,13 +497,422 @@ QueryPerformanceCounter((LARGE_INTEGER *)&start);
             }
     }
    }}};
-   t2_200_2t.join();
-   t1_200_2t.join();
 
    QueryPerformanceCounter((LARGE_INTEGER *)&stop);
-
+    t2_200_2t.join();
+   t1_200_2t.join();
 tempo = ((double)stop-(double)start) / (double)freq;
 
+return tempo;
+}
+
+//USANDO 4 THREADS -------------------------------------------------------------------------------------------------------
+
+double geraMatrizC_12_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 12;
+    int l, c,x;
+    thread t1_12_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_12_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_12_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_12_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_12_4t.join();
+    t2_12_4t.join();
+    t3_12_4t.join();
+    t4_12_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_20_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 20;
+    int l, c,x;
+    thread t1_20_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_20_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_20_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_20_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_20_4t.join();
+    t2_20_4t.join();
+    t3_20_4t.join();
+    t4_20_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_40_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 40;
+    int l, c,x;
+    thread t1_40_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_40_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_40_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_40_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_40_4t.join();
+    t2_40_4t.join();
+    t3_40_4t.join();
+    t4_40_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_80_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 80;
+    int l, c,x;
+    thread t1_80_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_80_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_80_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_80_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_80_4t.join();
+    t2_80_4t.join();
+    t3_80_4t.join();
+    t4_80_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_100_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 100;
+    int l, c,x;
+    thread t1_100_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_100_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_100_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_100_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_100_4t.join();
+    t2_100_4t.join();
+    t3_100_4t.join();
+    t4_100_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_120_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 120;
+    int l, c,x;
+    thread t1_120_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_120_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_120_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_120_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_120_4t.join();
+    t2_120_4t.join();
+    t3_120_4t.join();
+    t4_120_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_160_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 160;
+    int l, c,x;
+    thread t1_160_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_160_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_160_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_160_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_160_4t.join();
+    t2_160_4t.join();
+    t3_160_4t.join();
+    t4_160_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
+return tempo;
+}
+
+double geraMatrizC_200_4t(){
+    __int64 freq,start,stop;
+
+double tempo;
+
+QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+
+QueryPerformanceCounter((LARGE_INTEGER *)&start);
+    n = 200;
+    int l, c,x;
+    thread t1_200_4t{[&](){
+    for(l=0; l<n/4; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t2_200_4t{[&](){
+    for(l=n/4; l<n/2; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t3_200_4t{[&](){
+    for(l=n/2; l<((3*n)/4); l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   thread t4_200_4t{[&](){
+    for(l=((3*n)/4); l<n; l++){
+    for(c=0; c<n; c++){
+            for(x=0; x<n; x ++){
+                    matC[l][c] += matA[l][x] * matB[x][c];
+            }
+    }
+   }}};
+   QueryPerformanceCounter((LARGE_INTEGER *)&stop);
+    t1_200_4t.join();
+    t2_200_4t.join();
+    t3_200_4t.join();
+    t4_200_4t.join();
+tempo = ((double)stop-(double)start) / (double)freq;
 return tempo;
 }
 
@@ -568,6 +963,25 @@ cout << "Matriz 100x100 usando 2 threads = " << t100_2t << endl;
 cout << "Matriz 120x120 usando 2 threads = " << t120_2t << endl;
 cout << "Matriz 160x160 usando 2 threads = " << t160_2t << endl;
 cout << "Matriz 200x200 usando 2 threads = " << t200_2t << endl;
+
+// 4 THREADS ----------------------------------------------------------------------------------------------------------------
+t12_4t = geraMatrizC_12_4t();
+t20_4t = geraMatrizC_20_4t();
+t40_4t = geraMatrizC_40_4t();
+t80_4t = geraMatrizC_80_4t();
+t100_4t = geraMatrizC_100_4t();
+t120_4t = geraMatrizC_120_4t();
+t160_4t = geraMatrizC_160_4t();
+t200_4t = geraMatrizC_200_4t();
+
+cout << "Matriz 12x12 usando 4 threads = " << t12_4t << endl;
+cout << "Matriz 20x20 usando 4 threads = " << t20_4t << endl;
+cout << "Matriz 40x40 usando 4 threads = " << t40_4t << endl;
+cout << "Matriz 80x80 usando 4 threads = " << t80_4t << endl;
+cout << "Matriz 100x100 usando 4 threads = " << t100_4t << endl;
+cout << "Matriz 120x120 usando 4 threads = " << t120_4t << endl;
+cout << "Matriz 160x160 usando 4 threads = " << t160_4t << endl;
+cout << "Matriz 200x200 usando 4 threads = " << t200_4t << endl;
 
 //PRINTS
 for(int l=0; l <12; l++){
