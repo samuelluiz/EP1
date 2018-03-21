@@ -3,6 +3,7 @@
 #include <thread>
 #include <Windows.h>
 #include <vector>
+
 int n;
 int matA[200][200];
 int matB[200][200];
@@ -163,8 +164,8 @@ return tempo;
 }
 
 //USANDO N THREADS ----------------------------------------------------------------------------------------------------------------------------------
-double geraMatrizC_nT(int n){
-vector <thread> tmatriz;
+double geraMatrizC_nt(int n){
+vector <thread> tMatriz;
 int inicio = 0, fim = n/n, i;
 
     __int64 freq,start,stop;
@@ -221,6 +222,7 @@ cout << "Matriz 160x160 de forma sequencial = " << t160 << endl;
 cout << "Matriz 200x200 de forma sequencial = " << t200 << endl;
 
 //2 THREADS-----------------------------------------------------------------------------------------------------------------
+cout<<endl;
 t12_2t = geraMatrizC_2t(12);
 t20_2t = geraMatrizC_2t(20);
 t40_2t = geraMatrizC_2t(40);
@@ -240,6 +242,7 @@ cout << "Matriz 160x160 usando 2 threads = " << t160_2t << endl;
 cout << "Matriz 200x200 usando 2 threads = " << t200_2t << endl;
 
 // 4 THREADS ----------------------------------------------------------------------------------------------------------------
+cout<<endl;
 t12_4t = geraMatrizC_4t(12);
 t20_4t = geraMatrizC_4t(20);
 t40_4t = geraMatrizC_4t(40);
@@ -258,29 +261,24 @@ cout << "Matriz 120x120 usando 4 threads = " << t120_4t << endl;
 cout << "Matriz 160x160 usando 4 threads = " << t160_4t << endl;
 cout << "Matriz 200x200 usando 4 threads = " << t200_4t << endl;
 
-//PRINTS
-for(int l=0; l <12; l++){
-    for( c=0; c <12; c++){
-        cout << "|"<< matA[l][c] << "|";
-    }
-    cout << endl;
-}
+// USANDO N THREADS
 cout<< endl;
+t12_nt = geraMatrizC_nt(12);
+t20_nt = geraMatrizC_nt(20);
+t40_nt = geraMatrizC_nt(40);
+t80_nt = geraMatrizC_nt(80);
+t100_nt = geraMatrizC_nt(100);
+t120_nt = geraMatrizC_nt(120);
+t160_nt = geraMatrizC_nt(160);
+t200_nt = geraMatrizC_nt(200);
 
-for(int l=0; l <12; l++){
-    for( c=0; c <12; c++){
-        cout << "|"<< matB[l][c] << "|";
-    }
-    cout << endl;
-}
-cout<<endl;
-
-for(int l=0; l <12; l++){
-    for( c=0; c <12; c++){
-        cout << "|"<< matC[l][c] << "|";
-    }
-    cout << endl;
-}
+cout << "Matriz 12x12 usando n threads = " << t12_nt << endl;
+cout << "Matriz 20x20 usando n threads = " << t20_nt << endl;
+cout << "Matriz 40x40 usando n threads = " << t40_nt << endl;
+cout << "Matriz 80x80 usando n threads = " << t80_nt << endl;
+cout << "Matriz 100x100 usando n threads = " << t100_nt << endl;
+cout << "Matriz 120x120 usando n threads = " << t120_nt << endl;
+cout << "Matriz 160x160 usando n threads = " << t160_nt << endl;
+cout << "Matriz 200x200 usando n threads = " << t200_nt << endl;
 return 0;
 }
-
