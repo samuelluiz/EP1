@@ -258,6 +258,27 @@ cout << "Matriz 120x120 usando 4 threads = " << t120_4t << endl;
 cout << "Matriz 160x160 usando 4 threads = " << t160_4t << endl;
 cout << "Matriz 200x200 usando 4 threads = " << t200_4t << endl;
 
+// N THREADS -------------------------------------------------------------------------------------------------------------
+// 4 THREADS ----------------------------------------------------------------------------------------------------------------
+t12_nt = geraMatrizC_nT(12);
+t20_nt = geraMatrizC_nT(20);
+t40_nt = geraMatrizC_nT(40);
+t80_nt = geraMatrizC_nT(80);
+t100_nt = geraMatrizC_nT(100);
+t120_nt = geraMatrizC_nT(120);
+t160_nt = geraMatrizC_nT(160);
+t200_nt = geraMatrizC_nT(200);
+
+cout << "Matriz 12x12 usando n threads = " << t12_nt << endl;
+cout << "Matriz 20x20 usando n threads = " << t20_nt << endl;
+cout << "Matriz 40x40 usando n threads = " << t40_nt << endl;
+cout << "Matriz 80x80 usando n threads = " << t80_nt << endl;
+cout << "Matriz 100x100 usando n threads = " << t100_nt << endl;
+cout << "Matriz 120x120 usando n threads = " << t120_nt << endl;
+cout << "Matriz 160x160 usando n threads = " << t160_nt << endl;
+cout << "Matriz 200x200 usando n threads = " << t200_nt << endl;
+
+
 //PRINTS
 for(int l=0; l <12; l++){
     for( c=0; c <12; c++){
